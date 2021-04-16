@@ -50,12 +50,12 @@ $("input, textarea").change(event => {
     console.log(newPosts)
 })
 
-
-const saveData = mentorData => {
+///funcion que me permite guardar(posts) objeto
+const saveData = postsData => {
     $.ajax({
         method: "POST",
-        url: "https://mentor-list-8f155-default-rtdb.firebaseio.com/.json",
-        data: JSON.stringify(mentorData),
+        url: "https://post-29c03-default-rtdb.firebaseio.com/.json",
+        data: JSON.stringify(postsData),
         success : response => {
             console.log(response)
         },
@@ -65,170 +65,86 @@ const saveData = mentorData => {
     })
 }
 
-$("#save-posts").click(postsData)
-
-
-
-const saveData = mentorData => {
-    $.ajax({
-        method: "POST",
-        url: "https://mentor-list-8f155-default-rtdb.firebaseio.com/.json",
-        data: JSON.stringify(mentorData),
-        success: response => {
-            console.log(response)
-        },
-        error: error => {
-            console.log(error)
-        }
-    })
-}
-
-
-const post =  (newPost)=> {
-    
-        let { imageUrl, title, mainText } = newPosts[]
-            $('#cardpost').append(`
-                <div class="row no-gutters">
-                <div class="col-md-4 images">
-                <img class="w-100" id="imageUrl" src="${imageUrl}">
-                </div>
-                <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title" id="title">${title}</h5>
-                    <p class="card-text" id="mainText" >${mainText}</p>
-                    <p class="card-text" id="text" ><small class="text-muted">Creado el <span class="text-dark">14/04/2021</span></small></p>
-                </div>
-                </div>
-            </div>
-                        `)
-        }
-    
 $("#save-posts").click(()=>{
-    post(newPosts)
+    saveData(newPosts) ////saveData guarda los posts en firebase y newPost tiene el objeto
 })
 
-/*
 
-///Funcion Obtener la img ---método POST
+///Con get obtendo los objetos
+const getPost = () => {
+    let postGroup;
+    $.ajax({
+        method: "GET",
+        url: "https://post-29c03-default-rtdb.firebaseio.com/.json",
+        success: response => {
+          postGroup = response
+        },
 
-const setImgSrc = src => {
-    $(".images img").fadeTo("slow", 0, () => {
-        $(".images img").attr("src", src)
-        setTimeout(function () {
-            $(".images img").fadeTo("slow", 1)
-        }, 300)
-    })
-}
-
-///Funcion Obtener datos del post ---método POST
-const postsData =()=>{
-    let posts = {}
-    $(".card-body h5,p").each(function () { ///preguntar h5,p
-
-        let nameProperty = this.id;
-        let valueProperty = this.value
-
-        posts[nameProperty] = valueProperty
+        async:false
     })
 
-    saveData (posts)
+    return postGroup
 }
 
-/////---método POST
+///teniendo con posts lo post imprimo cards
+
+const post =  postGroup => {
+    console.log(postGroup)
+
+    $("#row").empty()
+
+    for (posts in postGroup) {
+        let { imageUrl, title, mainText } = postGroup [posts]
+        let postCard = `
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-3" id="cardpost">
+                    <div class="row no-gutters">
+                        <div class="col-md-4 images">
+                            <img class="w-100 mt-4" id="imageUrl" src="${imageUrl}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title" id="title">${title}</h5>
+                                <p class="card-text" id="mainText" >${mainText}</p>
+                                <p class="card-text" id="text" ><small class="text-muted">Creado el <span class="text-dark">14/04/2021</span></small></p>
+                            </div>
+                        </div>
+                    </div>
+
+            <div class="replies-wrapper">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <div class="reply-box">
+                                    <h3><img src="" alt=""><span>Israel Salinas Martínez</span></h3>
+                                    <p>Excelente post!</p>
+                                    <p class="text-right text-muted">
+                                        <span class="date">14/04/2021</span> 
+                                        <span class="time">"21:00"</span>   
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                            <div class="reply-form">
+                                <form action="">
+                                    <div class="form-group d-flex">
+                                        <input type="text" class="form-control">
+                                        <button class="btn btn-success">Comment</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+            `
+        $("#cardpost").append(postCard)
+    }
+}
+post(getPost())
+    
 
 
 
-*/
-
-
-
-
-
-// const printMentors = mentorsCollection => {
-//     console.log(mentorsCollection)
-//     $(".mentors-wrapper").empty()
-//     for (mentor in mentorsCollection) {
-//         let { name, email, phone } = mentorsCollection[mentor]
-//         let mentorCard = `
-//             <div class="col-6">
-//                 <div class="card mb-3">
-//                     <div class="card-body">
-//                         <div class="card-text">Nombre: ${name}</div>
-//                         <div class="card-text">Email: ${email}</div>
-//                         <div class="card-text">Phone: ${phone}</div>
-//                         <div class="d-flex justify-content-between">
-//                             <div class="btn btn-secondary">Eliminar</div>
-//                             <div class="btn btn-primary">Editar</div>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         `
-//         $(".mentors-wrapper").append(mentorCard)
-//     }
-// }
-
-
-
-// function modal (imagen, titulo, contenido) {
-
-//     this.imagen = imagen;
-//     this.titulo = titulo; 
-//     this.contenido = contenido; 
-//   }
-
-//   var modalArray = [];
-
-//   function obtenerimagen() {  
-
-//      = document.getElementById("imagen").value;
-//      var obtenerN = $("#imagen").
-//     return obtenerN;
-
-//   }
-//   function obtenertitulo() { 
-
-//     var obtenerP = document.getElementById("titulo").value;
-//     obtenerP = parseInt(obtenerP);
-
-//     return obtenerP;
-//   }
-
-//   function obtenercontenido() { 
-
-//     var obtenerI = document.getElementById("contenido").value;
-
-//     return obtenerI;
-//   }
-
-//   function obtenerCategory() { 
-
-//     var obtenerC = document.getElementById("category").value;
-
-//     return obtenerC;
-//   }
-
-//   function obtenerDescripcion() { 
-
-//     var obtenerD = document.getElementById("descripcion").value;
-
-//     return obtenerD;
-//   }
-
-//   function crearBeer() {
-
-//     var beersC = new Beers(obtenerNombre(), obtenerPrecio(), obtenerImagen(), obtenerCategory(), obtenerDescripcion(), 0);
-//     BeersArray.push(beersC);
-//   mostrarListado();
-//   }
-//   function mostrarListado(){
-//     var lista='';
-//     for(var i=0; i<BeersArray.length; i++){
-//       lista+= 'nombre: ' + BeersArray[i].nombre +
-//         ' descripcion: ' + BeersArray[i].descripcion + 
-//         ' precio: ' + BeersArray[i].precio + 
-//         ' imagen: ' + BeersArray[i].imagen +
-//         ' categoria: ' + BeersArray[i].categoria + "\n";
-//     }
-//     console.log(lista)
-//   }
