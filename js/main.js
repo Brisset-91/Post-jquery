@@ -40,6 +40,7 @@ let users = {
 ///Funcion Obtener datos del post ---método POST
 let newPosts = {}
 
+
 $("input, textarea").change(event => {
     //console.log(event.target)
 
@@ -49,6 +50,7 @@ $("input, textarea").change(event => {
     newPosts[property] = valueProperty //es newposts en property se le asigna el valor de value property
     console.log(newPosts)
 })
+
 
 ///funcion que me permite guardar(posts) objeto
 const saveData = postsData => {
@@ -94,7 +96,7 @@ const post =  postGroup => {
     $("#row").empty()
 
     for (posts in postGroup) {
-        let { imageUrl, title, mainText } = postGroup [posts]
+        let { imageUrl, title, mainText, comment } = postGroup [posts]
         let postCard = `
         <div class="row">
             <div class="col-12">
@@ -146,5 +148,115 @@ const post =  postGroup => {
 post(getPost())
     
 
+/*const postCm = (postComm) => {
+    
+    let { comment } = postComm
+    $("#pr").append(`<li class="list-group-item" style="">
+              <div class="reply-box">
+                  <p class="mt-3 font-arial">${comment}</p>
+                  <small class="text-right text-muted font-italic d-flex justify-content-end">
+                      <span class="date">14/April/2021</span> 
+                      -
+                      <span class="time">5:43:33 PM</span>   
+                  </small>
+              </div>
+          </li>`)
+         
+}
+   $("#btc").click((event)=>{
+       event.preventDefault();
+       postCm(postComm)
+   })*/
+    
 
 
+    /*$("list-group-item").ready(function(){
+		$("#btc").click(function(event){
+            event.preventDefault();
+		    $("#pr").append(`<li class="list-group-item" style="">
+              <div class="reply-box">
+                  <p class="mt-3 font-arial">${Comment}</p>
+                  <small class="text-right text-muted font-italic d-flex justify-content-end">
+                      <span class="date">14/April/2021</span> 
+                      -
+                      <span class="time">5:43:33 PM</span>   
+                  </small>
+              </div>
+          </li>`);
+		});
+	});*/
+
+
+
+let newComm = {}
+
+
+$("#inp").change(event => {
+    
+
+    let propCom = event.target.name
+    let valCom = event.target.value
+
+    newComm[propCom] = valCom 
+    console.log(newComm)
+})
+
+
+
+const saveCom = postsCom => {
+    $.ajax({
+        method: "POST",
+        url: "https://post-29c03-default-rtdb.firebaseio.com/.json",
+        data: JSON.stringify(postsCom),
+        success : response => {
+            console.log(response)
+        },
+        error : error => {
+            console.log(error)
+        }
+    })
+}
+
+$("#btc").click(()=>{
+    saveCom(newComm) 
+})
+
+
+
+const getPostCm = () => {
+    let postGroupCom;
+    $.ajax({
+        method: "GET",
+        url: "https://post-29c03-default-rtdb.firebaseio.com/.json",
+        success: response => {
+          postGroupCom = response
+        },
+
+        async:false
+    })
+
+    return postGroupCom
+}
+
+
+const postCm =  postGroupCom => {
+    console.log(postGroupCom)
+
+    $("#row").empty()
+
+    for (postsCom in postGroupCom) {
+        let { comment } = postGroupCom [postsCom]
+        let postCardCom = `<li class="list-group-item" style="">
+              <div class="reply-box">
+                  <p class="mt-3 font-arial">${comment}</p>
+                  <small class="text-right text-muted font-italic d-flex justify-content-end">
+                      <span class="date">14/April/2021</span> 
+                      -
+                      <span class="time">5:43:33 PM</span>   
+                  </small>
+              </div>
+          </li>`
+        $("#pr").append(postCardCom)
+    }
+}
+postCm(getPostCm())

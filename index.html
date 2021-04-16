@@ -25,7 +25,7 @@
             </div>
             <div class="modal-body">
 
-                <!--nuestro Form del post---->
+                
                 <form action="">
                     <div class="form-group">
                         <label for=""> Imagen </label>
@@ -45,7 +45,7 @@
                     <div class="form-group">
                         <p class="card-text form-control" name="text" ><small class="text-muted">Creado el <span class="text-dark">14/04/2021</span></small></p>
                     </div>
-                    <!--nuestro btn del post---->
+                    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                         <button type="button" id="save-posts" class="btn btn-primary">Guardar Posts</button>
@@ -90,7 +90,7 @@
                     <div class="replies-wrapper">
                         <ul class="list-group">
                             <li class="list-group-item">
-                                <div class="reply-box">
+                                <div class="reply-box" id="pr">
                                     <h3><img src="" alt=""><span>Israel Salinas Martínez</span></h3>
                                     <p>Excelente post!</p>
                                     <p class="text-right text-muted">
@@ -102,9 +102,9 @@
                         </ul>
                         <div class="reply-form">
                             <form action="">
-                                <div class="form-group d-flex">
-                                    <input type="text" class="form-control">
-                                    <button class="btn btn-success">Comment</button>
+                                <div class="form-group row center" style="justify-content: center;">
+                                    <input type="text" class="form-control w-50" id="inp" name="comment">
+                                    <button class="btn btn-success" id="btc">Comment</button>
                                 </div>
                             </form>
                         </div>
