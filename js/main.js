@@ -51,6 +51,22 @@ $("input, textarea").change( event =>{
 })
 
 
+const saveData = mentorData => {
+    $.ajax({
+        method: "POST",
+        url: "https://mentor-list-8f155-default-rtdb.firebaseio.com/.json",
+        data: JSON.stringify(mentorData),
+        success : response => {
+            console.log(response)
+        },
+        error : error => {
+            console.log(error)
+        }
+    })
+}
+
+$("#save-posts").click(postsData)
+
 
 
 /*
@@ -81,21 +97,7 @@ const postsData =()=>{
 }
 
 /////---método POST
-const saveData = mentorData => {
-    $.ajax({
-        method: "POST",
-        url: "https://mentor-list-8f155-default-rtdb.firebaseio.com/.json",
-        data: JSON.stringify(mentorData),
-        success : response => {
-            console.log(response)
-        },
-        error : error => {
-            console.log(error)
-        }
-    })
-}
 
-$("#btn-posts").click(postsData)
 
 
 */
