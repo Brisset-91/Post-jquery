@@ -9,7 +9,7 @@ let postsData = {
         creationTime: "19:00", /*hora de creación del post*/
         coverUrl: "https://picsum.photos/id/237/768/384",  /* portada del post*/
     }
-}
+} 
 
 ///cada que genere un replay se debe guardadr ahi en la replies y en cada post
 let replies = {
@@ -22,7 +22,7 @@ let replies = {
     }
 }
 
-////
+
 let users = {
     user1: { /*Entrada de usuario */
         userId: 1, /*id del usuario */
@@ -53,24 +53,11 @@ $("input, textarea").change(event => {
 
 
 
-const saveData = mentorData => {
-    $.ajax({
-        method: "POST",
-        url: "https://mentor-list-8f155-default-rtdb.firebaseio.com/.json",
-        data: JSON.stringify(mentorData),
-        success: response => {
-            console.log(response)
-        },
-        error: error => {
-            console.log(error)
-        }
-    })
-}
 
 
-const post =  (newPost)=> {
+const post = (newPosts)=> {
     
-        let { imageUrl, title, mainText } = newPosts[]
+        let { imageUrl, title, mainText } = newPosts
             $('#cardpost').append(`
                 <div class="row no-gutters">
                 <div class="col-md-4 images">
@@ -87,10 +74,25 @@ const post =  (newPost)=> {
                         `)
         }
     
+
+
+const saveData = newPosts => {
+    $.ajax({
+        method: "POST",
+        url: "https://mentor-list-8f155-default-rtdb.firebaseio.com/.json",
+        data: newPosts,
+        success : response => {
+            console.log(response)
+        },
+        error : error => {
+            console.log(error)
+        }
+    })
+}
 $("#save-posts").click(()=>{
     post(newPosts)
+    //saveData(newPost)//
 })
-
 /*
 
 ///Funcion Obtener la img ---método POST
