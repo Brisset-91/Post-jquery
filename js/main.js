@@ -1,3 +1,8 @@
+let prueba = {
+    imageUrl: "https://picsum.photos/id/237/768/384",
+    mainText: "Estamos insertando de raiz",
+    title: "Prueb de raiz"
+}
 
 let postsData = {
     post1: { /* entrada de post*/
@@ -40,7 +45,7 @@ let users = {
 ///Funcion Obtener datos del post ---método POST
 let newPosts = {}
 
-$("input, textarea").change(event => {
+$("#postForm input, #postForm textarea").change(event => {
     //console.log(event.target)
 
     let property = event.target.name
@@ -67,8 +72,9 @@ const saveData = postsData => {
 
 $("#save-posts").click(()=>{
     saveData(newPosts) ////saveData guarda los posts en firebase y newPost tiene el objeto
+    $("#newPost").modal('toggle');
+    post(getPost())
 })
-
 
 ///Con get obtendo los objetos
 const getPost = () => {

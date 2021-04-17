@@ -1,4 +1,9 @@
 .gallery-wrapper {
   height: 50vh;
 }
+
+nav div div button {
+  width: 150px;
+  height: 50px;
+}
 /*# sourceMappingURL=style.css.map */
