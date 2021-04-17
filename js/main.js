@@ -1,3 +1,8 @@
+let prueba = {
+    imageUrl: "https://picsum.photos/id/237/768/384",
+    mainText: "Estamos insertando de raiz",
+    title: "Prueb de raiz"
+}
 
 let postsData = {
     post1: { /* entrada de post*/
@@ -60,8 +65,9 @@ const saveData = postsData => {
 
 $("#save-posts").click(()=>{
     saveData(newPosts) ////saveData guarda los posts en firebase y newPost tiene el objeto
+    $("#newPost").modal('toggle');
+    post(getPost())
 })
-
 
 ///Con get obtendo los objetos
 const getPost = () => {
@@ -119,13 +125,12 @@ const post =  postGroup => {
                             </li>
                         </ul>
                             <div class="reply-form">
-                                <form action="">
-                                    <div class="form-group d-flex">
-                                        <input type="text" class="form-control">
-                                        <button class="btn btn-success">Comment</button>
-                                    </div>
-                                </form>
-                            </div>
+                            <form action="">
+                                <div class="form-group row" style="justify-content: center;">
+                                    <input type="text" class="form-control w-50" id="inp" name="comment">
+                                    <button class="btn btn-success" id="btc">Comment</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -138,45 +143,6 @@ const post =  postGroup => {
 }
 post(getPost())
     
-
-/*const postCm = (postComm) => {
-    
-    let { comment } = postComm
-    $("#pr").append(`<li class="list-group-item" style="">
-              <div class="reply-box">
-                  <p class="mt-3 font-arial">${comment}</p>
-                  <small class="text-right text-muted font-italic d-flex justify-content-end">
-                      <span class="date">14/April/2021</span> 
-                      -
-                      <span class="time">5:43:33 PM</span>   
-                  </small>
-              </div>
-          </li>`)
-         
-}
-   $("#btc").click((event)=>{
-       event.preventDefault();
-       postCm(postComm)
-   })*/
-    
-
-
-    /*$("list-group-item").ready(function(){
-		$("#btc").click(function(event){
-            event.preventDefault();
-		    $("#pr").append(`<li class="list-group-item" style="">
-              <div class="reply-box">
-                  <p class="mt-3 font-arial">${Comment}</p>
-                  <small class="text-right text-muted font-italic d-flex justify-content-end">
-                      <span class="date">14/April/2021</span> 
-                      -
-                      <span class="time">5:43:33 PM</span>   
-                  </small>
-              </div>
-          </li>`);
-		});
-	});*/
-
 
 
 let newComm = {}
