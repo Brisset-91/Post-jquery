@@ -11,16 +11,7 @@ let postsData = {
     }
 }
 
-///cada que genere un replay se debe guardadr ahi en la replies y en cada post
-let replies = {
-    reply1: { /*entrada de comentario*/
-        userId: 1, /*id del usuario que comenta*/
-        post: 1, /*id del post en el que se comenta*/
-        content: "Excelente post!", /*contenido del comentario */
-        creationDate: "14/04/2021", /*fecha de creación del comentario */
-        creationTime: "19:00", /*hora de creación del comentario */
-    }
-}
+
 
 ////
 let users = {
