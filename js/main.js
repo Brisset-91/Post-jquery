@@ -96,9 +96,9 @@ const post =  postGroup => {
     for (posts in postGroup) {
         let { imageUrl, title, mainText, comment } = postGroup [posts]
         let postCard = `
-        <div class="row">
+        
             <div class="col-12">
-                <div class="card mb-3" id="cardpost">
+                <div class="card mb-3">
                     <div class="row no-gutters">
                         <div class="col-md-4 images">
                             <img class="w-100 mt-4" id="imageUrl" src="${imageUrl}">
@@ -136,7 +136,6 @@ const post =  postGroup => {
                     </div>
                 </div>
             </div>
-        </div>
     
             `
         $("#cardpost").append(postCard)
