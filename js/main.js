@@ -163,7 +163,7 @@ $("#inp").change(event => {
 const saveCom = postsCom => {
     $.ajax({
         method: "POST",
-        url: "https://post-29c03-default-rtdb.firebaseio.com/.json",
+        url: "https://jquery-277d2-default-rtdb.firebaseio.com/.json",
         data: JSON.stringify(postsCom),
         success : response => {
             console.log(response)
@@ -174,7 +174,7 @@ const saveCom = postsCom => {
     })
 }
 
-$("#btc").click(()=>{
+$(".btn-success").click(()=>{
     saveCom(newComm) 
 })
 
@@ -184,11 +184,10 @@ const getPostCm = () => {
     let postGroupCom;
     $.ajax({
         method: "GET",
-        url: "https://post-29c03-default-rtdb.firebaseio.com/.json",
+        url: "https://jquery-277d2-default-rtdb.firebaseio.com/.json",
         success: response => {
           postGroupCom = response
         },
-
         async:false
     })
 
@@ -199,7 +198,7 @@ const getPostCm = () => {
 const postCm =  postGroupCom => {
     console.log(postGroupCom)
 
-    $("#row").empty()
+
 
     for (postsCom in postGroupCom) {
         let { comment } = postGroupCom [postsCom]
