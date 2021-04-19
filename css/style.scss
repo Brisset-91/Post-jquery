@@ -2,12 +2,13 @@
     height:50vh;
 }
 
-#jc{
-    justify-content: center;
-}
 
-.button{
-    :hover{
-        border: 2px, solid, black;
+.button:hover{
+    border: 1px solid powderblue;
+    background-color: rgb(52, 171, 187);
+    transition: background-color .6s;
+    -webkit-box-shadow: 1px 1px 2px 1px #000000; 
+    box-shadow: 1px 1px 2px 1px #000000;
     }
-}
+    
+
