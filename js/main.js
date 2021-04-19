@@ -55,6 +55,7 @@ const saveData = postsData => {
         url: "https://post-29c03-default-rtdb.firebaseio.com/.json",
         data: JSON.stringify(postsData),
         success : response => {
+            post(getPost())
             console.log(response)
         },
         error : error => {
@@ -66,7 +67,7 @@ const saveData = postsData => {
 $("#save-posts").click(()=>{
     saveData(newPosts) ////saveData guarda los posts en firebase y newPost tiene el objeto
     $("#newPost").modal('toggle');
-    post(getPost())
+   
 })
 
 ///Con get obtendo los objetos
@@ -90,7 +91,7 @@ const getPost = () => {
 const post =  postGroup => {
     console.log(postGroup)
 
-    $("#row").empty()
+    $("#cardpost").empty()
 
     for (posts in postGroup) {
         let { imageUrl, title, mainText, comment } = postGroup [posts]
