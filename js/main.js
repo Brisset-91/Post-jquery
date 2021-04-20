@@ -37,7 +37,7 @@ let users = {
 let newPosts = {}
 
 
-$("input, textarea").change(event => {
+$("#postsForm input, #postsForm textarea").change(event => {
     //console.log(event.target)
 
     let property = event.target.name
@@ -72,29 +72,29 @@ $("#save-posts").click(()=>{
 
 ///Con get obtendo los objetos
 const getPost = () => {
-    let postGroup;
+    let postGroupCom;
     $.ajax({
         method: "GET",
         url: "https://post-29c03-default-rtdb.firebaseio.com/.json",
         success: response => {
-          postGroup = response
+            postGroupCom = response
         },
 
         async:false
     })
 
-    return postGroup
+    return postGroupCom
 }
 
 ///teniendo con posts lo post imprimo cards
 
-const post =  postGroup => {
-    console.log(postGroup)
+const post =  postGroupCom => {
+    console.log(postGroupCom)
 
     $("#cardpost").empty()
 
-    for (posts in postGroup) {
-        let { imageUrl, title, mainText, comment } = postGroup [posts]
+    for (posts in postGroupCom) {
+        let { imageUrl, title, mainText, comment } = postGroupCom [posts]
         let postCard = `
         
             <div class="col-12">
@@ -148,9 +148,8 @@ post(getPost())
 let newComm = {}
 
 
-$("#inp").change(event => {
+$("#commentForm input").change(event => {
     
-
     let propCom = event.target.name
     let valCom = event.target.value
 
